@@ -1,0 +1,6 @@
+没办法，比较穷
+先用这个方法规避了吧
+等以后有钱了给IDEA补上
+===================IntelljIDEA破解================
+选择菜单Help->Register->License server，填上http://idea.iteblog.com/key.php
+点击Activate，然后就搞定了。
