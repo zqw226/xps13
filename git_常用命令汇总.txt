@@ -1,87 +1,40 @@
-Git基本常用命令如下：
-mkdir XX：         创建一个空目录 XX指目录名。
-pwd：              显示当前目录的路径。
-git init           把当前的目录变成可以管理的git仓库，生成隐藏.git文件。
-git add XX         把xx文件添加到暂存区去。
-git commit –m “XX” 提交文件 –m 后面的是注释。
-git status         查看仓库状态
-git diff  XX       查看XX文件修改了那些内容
-git log            查看历史记录
-git reset –hard HEAD^ 或者 
-git reset –hard HEAD~ 回退到上一个版本，如果想回退到100个版本，使用
+==========Git基本常用命令如下===============
+mkdir XX：              创建一个空目录 XX指目录名。
+pwd：                   显示当前目录的路径。
+git init                把当前的目录变成可以管理的git仓库，生成隐藏.git文件。
+git add XX              把xx文件添加到暂存区去。
+git add .               递归的add所有子目录文件
+git clean -df           删除那些没有被git add的文件和目录
+git commit –m “XX”      提交文件 –m 后面的是注释。
+git commit -a           相当于先add再提交，不用暂存
+git commit --amend      使用当前提交节点增补提交，旧的提交被取消
+git status              查看仓库状态
+git diff  XX            查看XX文件修改了那些内容
+git log                 查看历史记录
+git reset –hard HEAD^   或者 
+git reset –hard HEAD~   回退到上一个版本，如果想回退到100个版本，使用
 git reset –hard HEAD~100
-cat XX             查看XX文件内容
-git reflog         查看历史记录的版本号id
-git checkout — XX  把XX文件在工作区的修改全部撤销。
-
-git rm XX          删除XX文件
-
-git remote add origin https://github.com/tugenhua0707/testgit 关联一个远程库
-
-git push –u(第一次要用-u 以后不需要) origin master 把当前master分支推送到远程库
-
-git clone https://github.com/tugenhua0707/testgit  从远程库中克隆
-
-git checkout –b dev  创建dev分支 并切换到dev分支上
-
-git branch  查看当前所有的分支
-
-git checkout master 切换回master分支
-
-git merge dev    在当前的分支上合并dev分支
-
-git branch –d dev 删除dev分支
-
-git branch name  创建分支
-
-git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作
-
-git stash list 查看所有被隐藏的文件列表
-
-git stash apply 恢复被隐藏的文件，但是内容不删除
-
-git stash drop 删除文件
-
-git stash pop 恢复文件的同时 也删除文件
-
-git remote 查看远程库的信息
-
-git remote –v 查看远程库的详细信息
-
+cat XX                  查看XX文件内容
+git reflog              查看历史记录的版本号id
+git checkout — XX       把XX文件在工作区的修改全部撤销。
+git rm XX               删除XX文件
+git remote add origin git@github.com:zqw226/xps13.git 关联一个远程库
+git push –u(第一次要用-u 以后不需要) origin master    把当前master分支推送到远程库
+git clone git@github.com:zqw226/xps13.git             从远程库中克隆
+git checkout –b dev     创建dev分支 并切换到dev分支上
+git branch              查看当前所有的分支
+git checkout master     切换回master分支
+git merge dev           在当前的分支上合并dev分支
+git branch –d dev       删除dev分支
+git branch name         创建分支
+git revert HEAD         撤销最近的一个提交
+git stash               把当前的工作隐藏起来 等以后恢复现场后继续工作
+git stash list          查看所有被隐藏的文件列表 
+git stash apply         恢复被隐藏的文件，但是内容不删除
+git stash drop          删除文件
+git stash pop           恢复文件的同时 也删除文件
+git remote              查看远程库的信息
+git remote –v           查看远程库的详细信息
 git push origin master  Git会把master分支推送到远程库对应的远程分支上
+git push --set-upstream origin develop   关联默认push与pull分支
 
-
-
-
-============================================详细===============================
---------------查看远程仓库地址--------
-#git remote -v
---------------从远程克隆一个已经有的分支------
-#git clone -b "branchname" git@github.com:zqw226/xps13.git
-如果是master则可以不使用-b参数,直接使用
-#git clone git@github.com:zqw226/xps13.git
---------------把本地内容推送到远程分支--------
-#git push -u origin master 
-意义是把当前分支推送到远程master分支
-如果远程库是空的，第一次推送需要加上-u：把远程分支和本地分支关联起来
-在以后的推送中，直接使用
-#git push origin master
---------------创建并切换分支-----------
-#git checkout -b develop 创建并切换分支
-相当于两条命令：
-#git branch develop   创建分支develop
-#git checkout develop  切换分支到develop
---------------创建分支后从远程pull数据需要指定从哪个分支pull-----
-#git pull origin master
---------------创建分支后向远程push数据需要指定向那个分支push-----------
-#git push origin develop
-#git push origin develop
---------------指定默认push与pull分支---------------
-#git push --set-upstream origin develop 这样可以设置默认push分支，此后直接使用
-git push即可直接push到develop分支
---------------从develop如何merge到master-----------
-#git checkout master   切换回master,拥有master权限
-#git merge develop     merge分支develop到master
-git合并非常快，实际上就是把master指向develop的当前提交
---------------删除develop分支-----------------
-#git branch -d develop
